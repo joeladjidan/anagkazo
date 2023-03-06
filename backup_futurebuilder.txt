@@ -1,0 +1,26 @@
+FutureBuilder(
+        future: enseignmtCtrl.fetchAllEnseignementsData(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.none &&
+                  !snapshot.hasData ||
+              snapshot.connectionState == ConnectionState.waiting) {
+            return shimmerUi();
+          } else {
+            if (snapshot.hasError) {
+              print(snapshot.error);
+            }
+            if (snapshot.hasData) {
+              return snapshot.data.length == 0
+                  ? Center(
+                      child: Text(
+                      'Pas de données chargées',
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontStyle: FontStyle.italic,
+                          fontFamily: 'changa'),
+                    ))
+                  : Obx(() => Enseignements(enseignmtCtrl, snapshot.data));
+            }
+          }
+          return Container();
+        })
