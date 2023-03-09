@@ -8,15 +8,18 @@ import 'routes/router.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   await GetStorage.init();
-      runApp(GetMaterialApp(
-        // home: SplashScreen(),
-        initialBinding: HomeSiginControllerBinding(),
-        debugShowCheckedModeBanner: true,
-        initialRoute: Routes.SplashScreen,
-        getPages: getPages,
-        translations: Messages(),
-        locale: Locale('fr', 'FR'), 
-        fallbackLocale: Locale('fr', 'FR'),
-      ));
+  await GetStorage.init();
+  runApp(GetMaterialApp(
+    // home: SplashScreen(),
+    theme: ThemeData(
+        // platform: TargetPlatform.iOS,
+        ),
+    initialBinding: HomeSiginControllerBinding(),
+    debugShowCheckedModeBanner: true,
+    initialRoute: Routes.SplashScreen,
+    getPages: getPages,
+    translations: Messages(),
+    locale: Locale('fr', 'FR'),
+    fallbackLocale: Locale('fr', 'FR'),
+  ));
 }
